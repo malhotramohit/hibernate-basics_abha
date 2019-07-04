@@ -25,6 +25,8 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
 
-		<mapping class="com.gs.hibernate.models.Flights" />
+		<mapping class="com.gs.hibernate.models.Ticket" />
+		<mapping class="com.gs.hibernate.models.Passenger" />
+
 	</session-factory>
 </hibernate-configuration>
