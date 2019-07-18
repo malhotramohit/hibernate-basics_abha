@@ -27,6 +27,9 @@
 
 		<mapping class="com.gs.hibernate.models.Ticket" />
 		<mapping class="com.gs.hibernate.models.Passenger" />
+		<mapping class="com.gs.hibernate.models.Teacher" />
+				<mapping class="com.gs.hibernate.models.Standard" />
+		
 
 	</session-factory>
 </hibernate-configuration>

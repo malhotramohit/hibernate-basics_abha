@@ -1,12 +1,25 @@
 package com.gs.hibernate.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@Entity
+@NamedQueries({
+		@NamedQuery(name = "Passenger.getPassengerByAge", query = "select pa from passenger pa where pa.age = :age "),
+		@NamedQuery(name = "Passenger.getPassengerByName",query = "select pa from passenger pa where pa.passengerName = :passengerName ")
+		})
+
+@Entity(name="passenger")
+@Table(name = "passenger_table")
 public class Passenger {
 
 	@Id
@@ -15,6 +28,24 @@ public class Passenger {
 	private long seq;
 	private String passengerName;
 	private int age;
+
+	@OneToMany(mappedBy = "passesnger", cascade = CascadeType.ALL)
+	// @JoinTable(name = "passenger_ticket_xref", joinColumns = @JoinColumn(name =
+	// "pass_id"), inverseJoinColumns = @JoinColumn(name = "tick_id"))
+	private List<Ticket> tickets;
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	public Passenger() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Passenger(String passengerName, int age) {
 		super();

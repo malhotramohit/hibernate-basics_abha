@@ -2,11 +2,14 @@ package com.gs.hibernate.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +26,22 @@ public class Ticket {
 	@Column(name = "ticket_name")
 	private String ticketName;
 	private double price;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pass_id")
+	private Passenger passesnger;
+
+	// @OneToOne
+	// @JoinColumn(name = "passenger_id")
+	// private Passenger passenger;
+
+	public Passenger getPassesnger() {
+		return passesnger;
+	}
+
+	public void setPassesnger(Passenger passesnger) {
+		this.passesnger = passesnger;
+	}
 
 	@Transient
 	private Date date;
@@ -108,6 +127,14 @@ public class Ticket {
 	public void setDate4(Date date4) {
 		this.date4 = date4;
 	}
+
+	// public Passenger getPassenger() {
+	// return passenger;
+	// }
+	//
+	// public void setPassenger(Passenger passenger) {
+	// this.passenger = passenger;
+	// }
 
 	@Override
 	public String toString() {
