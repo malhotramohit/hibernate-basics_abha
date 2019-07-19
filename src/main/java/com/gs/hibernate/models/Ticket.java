@@ -10,12 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-@Entity
+@NamedQueries({
+		@NamedQuery(name = "Ticket.getTicketWithPassByTicketPrice", query = "select p  from Ticket  t inner join t.passesnger p where t.price	=:price "),
+		@NamedQuery(name = "Ticket.getPassNameAnaAgeByTicketPrice", query = "select p.passengerName, p.age  from Ticket  t inner join t.passesnger p where t.price	=:price ")})
+@Entity()
 public class Ticket {
 
 	@Id

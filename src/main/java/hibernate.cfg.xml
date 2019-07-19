@@ -11,7 +11,7 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://localhost:5433/ABHA_DB</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5433/RAJNISH_DB</property>
 		<property name="connection.username">postgres</property>
 		<property name="connection.password">Sai@1508</property>
 

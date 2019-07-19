@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -17,6 +19,12 @@ import javax.persistence.Table;
 		@NamedQuery(name = "Passenger.getPassengerByAge", query = "select pa from passenger pa where pa.age = :age "),
 		@NamedQuery(name = "Passenger.getPassengerByName",query = "select pa from passenger pa where pa.passengerName = :passengerName ")
 		})
+
+@NamedNativeQueries({
+	@NamedNativeQuery(name="Passenger.getPassenegerByTicketPriceNative",query="select pt.*, t.seq as tseq , t.price from passenger_table pt inner join ticket t on (pt.seq = t.pass_id) where t.price = :price"),
+	@NamedNativeQuery(name="Passenger.getPassenegersNative",query="select pt.*  from passenger_table pt")
+
+})
 
 @Entity(name="passenger")
 @Table(name = "passenger_table")
